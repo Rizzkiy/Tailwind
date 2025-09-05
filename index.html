@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catur - Portofolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#3B82F6',
+                        secondary: '#10B981',
+                        dark: '#1F2937',
+                        light: '#F9FAFB',
+                    },
+                    fontFamily: {
+                        poppins: ['Poppins', 'sans-serif'],
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .hero-pattern {
+            background-color: #ffffff;  
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%233b82f6' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+        .hero-pattern-dark {        
+            background-color: #1F2937;  
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%233b82f6' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .skill-bar {
+            transition: width 1.5s ease-in-out;
+        }
+        .dark-mode-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            background-color: #3B82F6;
+            color: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        .dark-mode-toggle:hover {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body class="font-poppins bg-light text-dark dark:bg-dark dark:text-light transition-colors duration-300">
+    <!-- Toggle Dark Mode -->
+    <button id="theme-toggle" class="dark-mode-toggle">
+        <i class="fas fa-moon" id="theme-icon"></i>
+    </button>
+
+    <!-- Header dengan gradient -->
+    <header class="hero-pattern dark:hero-pattern-dark py-16 transition-colors duration-300">
+        <div class="container mx-auto px-4 text-center">
+            <div class="inline-block p-3 bg-primary/10 dark:bg-primary/20 rounded-full mb-6">
+                <div class="w-24 h-24 mx-auto bg-gradient-to-br from-primary to-secondary rounded-full overflow-hidden border-4 border-white dark:border-gray-800 shadow-lg">
+                    <!-- Ganti dengan gambar profil Anda -->
+                    <img src="IMG/Icon.jpg" 
+                         alt="Rizki Catur Maulana" 
+                         class="w-full h-full object-cover">
+                </div>
+            </div>
+            <h1 class="text-4xl md:text-5xl font-bold mb-2 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Rizki Catur Maulana</h1>
+            <p class="text-lg text-gray-600 dark:text-gray-300 mb-6">Siswa SMKN 8 Malang & Calon Fullstack Developer</p>
+            <div class="flex justify-center space-x-4">
+                <a href="#projects" class="px-6 py-2 bg-primary text-white rounded-full shadow hover:shadow-md transition">Projects</a>
+                <a href="#contact" class="px-6 py-2 border border-primary text-primary dark:text-white dark:border-white rounded-full shadow hover:bg-primary hover:text-white transition">Contact Me</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-12 max-w-6xl">
+        <!-- Navigation Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
+            <a href="projects.html" class="card-hover bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md border-l-4 border-primary hover:border-secondary dark:hover:border-secondary">
+                <div class="text-center">
+                    <div class="w-12 h-12 mx-auto mb-4 bg-primary/10 dark:bg-primary/20 rounded-full flex items-center justify-center text-primary dark:text-blue-400">
+                        <i class="fas fa-project-diagram text-xl"></i>
+                    </div>
+                    <h3 class="font-semibold text-lg dark:text-white">Projects</h3>
+                    <p class="text-gray-600 dark:text-gray-300 mt-2">Lihat proyek-proyek yang telah saya kerjakan</p>
+                </div>
+            </a>
+            
+            <a href="courses.html" class="card-hover bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md border-l-4 border-secondary hover:border-primary dark:hover:border-primary">
+                <div class="text-center">
+                    <div class="w-12 h-12 mx-auto mb-4 bg-secondary/10 dark:bg-secondary/20 rounded-full flex items-center justify-center text-secondary dark:text-green-400">
+                        <i class="fas fa-graduation-cap text-xl"></i>
+                    </div>
+                    <h3 class="font-semibold text-lg dark:text-white">Courses</h3>
+                    <p class="text-gray-600 dark:text-gray-300 mt-2">Kursus dan pelatihan yang telah saya ikuti</p>
+                </div>
+            </a>
+            
+            <a href="experience.html" class="card-hover bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md border-l-4 border-orange-500 hover:border-primary dark:hover:border-primary">
+                <div class="text-center">
+                    <div class="w-12 h-12 mx-auto mb-4 bg-orange-500/10 dark:bg-orange-500/20 rounded-full flex items-center justify-center text-orange-500 dark:text-orange-400">
+                        <i class="fas fa-briefcase text-xl"></i>
+                    </div>
+                    <h3 class="font-semibold text-lg dark:text-white">Experience</h3>
+                    <p class="text-gray-600 dark:text-gray-300 mt-2">Pengalaman kerja dan magang saya</p>
+                </div>
+            </a>
+        </div>
+
+        <!-- About Section -->
+        <section class="mb-16">
+            <div class="flex flex-col md:flex-row items-center gap-8">
+                <div class="md:w-1/2">
+                    <h2 class="text-3xl font-bold mb-6 relative dark:text-white">
+                        <span class="relative">
+                            Tentang Saya
+                            <span class="absolute -bottom-2 left-0 w-12 h-1 bg-primary rounded-full"></span>
+                        </span>
+                    </h2>
+                    <p class="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
+                        Saya adalah seorang siswa yang sangat antusias dengan dunia teknologi dan juga saya memiliki impian untuk menjadi Fullstack Developer.
+                    </p>
+                    <p class="text-gray-700 dark:text-gray-300 leading-relaxed">
+                        Saat ini saya sedang fokus untuk mendalami HTML5 & CSS3, JavaScript, UI/UX Design, Python, C++, dan Database Management.
+                    </p>
+                    <div class="flex mt-6 space-x-4">
+                        <div class="flex items-center text-primary dark:text-blue-400">
+                            <i class="fas fa-map-marker-alt mr-2"></i>
+                            <span class="dark:text-gray-300">Malang, Indonesia</span>
+                        </div>
+                        <div class="flex items-center text-secondary dark:text-green-400">
+                            <i class="fas fa-school mr-2"></i>
+                            <span class="dark:text-gray-300">SMKN 08 Malang</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="md:w-1/2">
+                    <div class="bg-gradient-to-br from-primary to-secondary rounded-2xl overflow-hidden shadow-xl p-1 animate-float">
+                        <div class="bg-white dark:bg-gray-800 rounded-2xl p-6">
+                            <h3 class="font-semibold text-lg mb-4 dark:text-white">Fokus Saat Ini</h3>
+                            <div class="space-y-4">
+                                <div>
+                                    <div class="flex justify-between mb-1">
+                                        <span class="font-medium dark:text-gray-300">HTML5 & CSS3</span>
+                                        <span class="text-primary dark:text-blue-400">90%</span>
+                                    </div>
+                                    <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2.5">
+                                        <div class="skill-bar h-2.5 rounded-full bg-primary" style="width: 90%"></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="flex justify-between mb-1">
+                                        <span class="font-medium dark:text-gray-300">JavaScript</span>
+                                        <span class="text-primary dark:text-blue-400">65%</span>
+                                    </div>
+                                    <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2.5">
+                                        <div class="skill-bar h-2.5 rounded-full bg-primary" style="width: 65%"></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="flex justify-between mb-1">
+                                        <span class="font-medium dark:text-gray-300">UI/UX Design</span>
+                                        <span class="text-primary dark:text-blue-400">60%</span>
+                                    </div>
+                                    <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2.5">
+                                        <div class="skill-bar h-2.5 rounded-full bg-primary" style="width: 60%"></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="flex justify-between mb-1">
+                                        <span class="font-medium dark:text-gray-300">Python</span>
+                                        <span class="text-primary dark:text-blue-400">75%</span>
+                                    </div>
+                                    <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2.5">
+                                        <div class="skill-bar h-2.5 rounded-full bg-primary" style="width: 75%"></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="flex justify-between mb-1">
+                                        <span class="font-medium dark:text-gray-300">C++</span>
+                                        <span class="text-primary dark:text-blue-400">80%</span>
+                                    </div>
+                                    <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2.5">
+                                        <div class="skill-bar h-2.5 rounded-full bg-primary" style="width: 80%"></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="flex justify-between mb-1">
+                                        <span class="font-medium dark:text-gray-300">Database</span>
+                                        <span class="text-primary dark:text-blue-400">85%</span>
+                                    </div>
+                                    <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2.5">
+                                        <div class="skill-bar h-2.5 rounded-full bg-primary" style="width: 85%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section class="mb-16">
+            <h2 class="text-3xl font-bold mb-8 text-center dark:text-white">Keahlian Utama</h2>
+            <div class="grid grid-cols-2 md:grid-cols-5 gap-4">
+                <div class="card-hover bg-white dark:bg-gray-800 p-4 rounded-lg shadow-md text-center">
+                    <div class="w-14 h-14 mx-auto mb-3 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center text-blue-600 dark:text-blue-400 text-2xl">
+                        <i class="fab fa-html5"></i>
+                    </div>
+                    <span class="font-medium dark:text-gray-300">HTML5</span>
+                </div>
+                <div class="card-hover bg-white dark:bg-gray-800 p-4 rounded-lg shadow-md text-center">
+                    <div class="w-14 h-14 mx-auto mb-3 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center text-blue-600 dark:text-blue-400 text-2xl">
+                        <i class="fab fa-css3-alt"></i>
+                    </div>
+                    <span class="font-medium dark:text-gray-300">CSS3</span>
+                </div>
+                <div class="card-hover bg-white dark:bg-gray-800 p-4 rounded-lg shadow-md text-center">
+                    <div class="w-14 h-14 mx-auto mb-3 bg-cyan-100 dark:bg-cyan-900 rounded-full flex items-center justify-center text-cyan-600 dark:text-cyan-400 text-2xl">
+                        <i class="fas fa-paint-brush"></i>
+                    </div>
+                    <span class="font-medium dark:text-gray-300">Tailwind CSS</span>
+                </div>
+                <div class="card-hover bg-white dark:bg-gray-800 p-4 rounded-lg shadow-md text-center">
+                    <div class="w-14 h-14 mx-auto mb-3 bg-yellow-100 dark:bg-yellow-900 rounded-full flex items-center justify-center text-yellow-600 dark:text-yellow-400 text-2xl">
+                        <i class="fab fa-js-square"></i>
+                    </div>
+                    <span class="font-medium dark:text-gray-300">JavaScript</span>
+                </div>
+                <div class="card-hover bg-white dark:bg-gray-800 p-4 rounded-lg shadow-md text-center">
+                    <div class="w-14 h-14 mx-auto mb-3 bg-purple-100 dark:bg-purple-900 rounded-full flex items-center justify-center text-purple-600 dark:text-purple-400 text-2xl">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <span class="font-medium dark:text-gray-300">UI/UX Design</span>
+                </div>
+                <div class="card-hover bg-white dark:bg-gray-800 p-4 rounded-lg shadow-md text-center">
+                    <div class="w-14 h-14 mx-auto mb-3 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center text-blue-600 dark:text-blue-400 text-2xl">
+                        <i class="fab fa-python"></i>
+                    </div>
+                    <span class="font-medium dark:text-gray-300">Python</span>
+                </div>
+                <div class="card-hover bg-white dark:bg-gray-800 p-4 rounded-lg shadow-md text-center">
+                    <div class="w-14 h-14 mx-auto mb-3 bg-blue-800 rounded-full flex items-center justify-center text-white text-2xl">
+                        <i class="fab fa-cuttlefish"></i>
+                    </div>
+                    <span class="font-medium dark:text-gray-300">C++</span>
+                </div>
+                <div class="card-hover bg-white dark:bg-gray-800 p-4 rounded-lg shadow-md text-center">
+                    <div class="w-14 h-14 mx-auto mb-3 bg-green-100 dark:bg-green-900 rounded-full flex items-center justify-center text-green-600 dark:text-green-400 text-2xl">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <span class="font-medium dark:text-gray-300">Database</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="mb-16">
+            <div class="bg-gradient-to-r from-primary to-secondary rounded-2xl shadow-xl overflow-hidden">
+                <div class="md:flex">
+                    <div class="md:w-1/2 p-8 md:p-12 text-white">
+                        <h2 class="text-3xl font-bold mb-4">Hubungi Saya</h2>
+                        <p class="mb-6">Silakan hubungi saya melalui email atau Github. Saya selalu terbuka untuk diskusi tentang proyek baru dan peluang kolaborasi.</p>
+                        <div class="space-y-4">
+                            <div class="flex items-center">
+                                <div class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center mr-3">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div>
+                                    <p class="font-semibold">Email</p>
+                                    <a href="mailto:rizkicatur24@gmail.com" class="text-white/90 hover:text-white">rizkicatur24@gmail.com</a>
+                                </div>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center mr-3">
+                                    <i class="fab fa-github"></i>
+                                </div>
+                                <div>
+                                    <p class="font-semibold">GitHub</p>
+                                    <a href="#" class="text-white/90 hover:text-white">Rizzkiy</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="md:w-1/2 bg-white dark:bg-gray-800 p-8 md:p-12">
+                        <h3 class="text-xl font-semibold mb-4 dark:text-white">Kirim Pesan</h3>
+                        <form>
+                            <div class="mb-4">
+                                <input type="text" placeholder="Nama Anda" class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent dark:bg-gray-700 dark:text-white">
+                            </div>
+                            <div class="mb-4">
+                                <input type="email" placeholder="Email Anda" class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent dark:bg-gray-700 dark:text-white">
+                            </div>
+                            <div class="mb-4">
+                                <textarea placeholder="Pesan Anda" rows="3" class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent dark:bg-gray-700 dark:text-white"></textarea>
+                            </div>
+                            <button type="submit" class="w-full bg-primary hover:bg-blue-700 text-white py-2 px-4 rounded-lg transition">Kirim Pesan</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-dark dark:bg-gray-900 text-white py-8 transition-colors duration-300">
+        <div class="container mx-auto px-4 text-center">
+            <p>&copy; 2025 Rizki Catur Maulana. All rights reserved.</p>
+            <div class="flex justify-center space-x-4 mt-4">
+                <a href="https://github.com/Rizzkiy" class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-primary transition">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="https://www.instagram.com/rizky._catur/" class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-primary transition">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://www.tiktok.com/@riku._01" class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-primary transition">
+                    <i class="fab fa-tiktok"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Animasi skill bars ketika masuk viewport
+        document.addEventListener('DOMContentLoaded', function() {
+            const skillBars = document.querySelectorAll('.skill-bar');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const width = entry.target.style.width;
+                        entry.target.style.width = '0';
+                        setTimeout(() => {
+                            entry.target.style.width = width;
+                        }, 100);
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.5 });
+            
+            skillBars.forEach(bar => {
+                observer.observe(bar);
+            });
+
+            // Toggle dark mode functionality
+            const themeToggle = document.getElementById('theme-toggle');
+            const themeIcon = document.getElementById('theme-icon');
+            const htmlElement = document.documentElement;
+
+            // Check for saved theme preference or respect OS preference
+            if (localStorage.getItem('theme') === 'dark' || 
+                (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                htmlElement.classList.add('dark');
+                themeIcon.classList.remove('fa-moon');
+                themeIcon.classList.add('fa-sun');
+            } else {
+                htmlElement.classList.remove('dark');
+                themeIcon.classList.remove('fa-sun');
+                themeIcon.classList.add('fa-moon');
+            }
+
+            // Toggle theme on button click
+            themeToggle.addEventListener('click', () => {
+                if (htmlElement.classList.contains('dark')) {
+                    htmlElement.classList.remove('dark');
+                    localStorage.setItem('theme', 'light');
+                    themeIcon.classList.remove('fa-sun');
+                    themeIcon.classList.add('fa-moon');
+                } else {
+                    htmlElement.classList.add('dark');
+                    localStorage.setItem('theme', 'dark');
+                    themeIcon.classList.remove('fa-moon');
+                    themeIcon.classList.add('fa-sun');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
