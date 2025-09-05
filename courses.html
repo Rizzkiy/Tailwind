@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Courses - Catur Portofolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#3B82F6',
+                        secondary: '#10B981',
+                        dark: '#1F2937',
+                        light: '#F9FAFB',
+                    },
+                    fontFamily: {
+                        poppins: ['Poppins', 'sans-serif'],
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .hero-pattern {
+            background-color: #ffffff;  
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%233b82f6' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+        .hero-pattern-dark {        
+            background-color: #1F2937;  
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%233b82f6' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .dark-mode-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            background-color: #3B82F6;
+            color: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        .dark-mode-toggle:hover {
+            transform: scale(1.1);
+        }
+        .progress-bar {
+            transition: width 1.5s ease-in-out;
+        }
+        .course-card {
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+        .course-card:hover .course-image {
+            transform: scale(1.05);
+        }
+        .course-image {
+            transition: transform 0.5s ease;
+        }
+    </style>
+</head>
+<body class="font-poppins bg-light text-dark dark:bg-dark dark:text-light transition-colors duration-300">
+    <!-- Toggle Dark Mode -->
+    <button id="theme-toggle" class="dark-mode-toggle">
+        <i class="fas fa-moon" id="theme-icon"></i>
+    </button>
+
+    <!-- Header dengan gradient -->
+    <header class="hero-pattern dark:hero-pattern-dark py-12 transition-colors duration-300">
+        <div class="container mx-auto px-4">
+            <a href="index.html" class="inline-flex items-center text-primary dark:text-blue-400 hover:text-secondary dark:hover:text-green-400 mb-6">
+                <i class="fas fa-arrow-left mr-2"></i> Kembali ke Beranda
+            </a>
+            <div class="text-center">
+                <h1 class="text-4xl md:text-5xl font-bold mb-2 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Kursus & Pelatihan</h1>
+                <p class="text-lg text-gray-600 dark:text-gray-300">Kursus dan pelatihan yang telah saya selesaikan dan masih dalam progres</p>
+            </div>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-12 max-w-6xl">
+        <!-- Filter Kategori -->
+        <div class="flex flex-wrap justify-center gap-3 mb-12">
+            <button class="px-4 py-2 bg-primary text-white rounded-full text-sm font-medium">Semua</button>
+            <button class="px-4 py-2 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-full text-sm font-medium border border-gray-200 dark:border-gray-700">Web Development</button>
+            <button class="px-4 py-2 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-full text-sm font-medium border border-gray-200 dark:border-gray-700">Data Science</button>
+            <button class="px-4 py-2 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-full text-sm font-medium border border-gray-200 dark:border-gray-700">UI/UX Design</button>
+            <button class="px-4 py-2 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-full text-sm font-medium border border-gray-200 dark:border-gray-700">Mobile Development</button>
+        </div>
+
+        <!-- Progress Belajar -->
+        <div class="mb-16">
+            <h2 class="text-3xl font-bold mb-8 text-center dark:text-white">Progress Belajar</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 card-hover">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary dark:text-blue-400 mr-4">
+                            <i class="fas fa-clock text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-semibold dark:text-white">Total Jam Belajar</h3>
+                            <p class="text-2xl font-bold text-primary dark:text-blue-400">248<span class="text-sm font-normal text-gray-500 dark:text-gray-400 ml-1">jam</span></p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 card-hover">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-secondary/10 flex items-center justify-center text-secondary dark:text-green-400 mr-4">
+                            <i class="fas fa-trophy text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-semibold dark:text-white">Kursus Diselesaikan</h3>
+                            <p class="text-2xl font-bold text-secondary dark:text-green-400">12<span class="text-sm font-normal text-gray-500 dark:text-gray-400 ml-1">kursus</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Daftar Kursus -->
+        <div class="mb-16">
+            <h2 class="text-3xl font-bold mb-8 text-center dark:text-white">Kursus yang Telah Diselesaikan</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Course 1 -->
+                <div class="course-card bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden card-hover">
+                    <div class="overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
+                             alt="Web Development Bootcamp" 
+                             class="w-full h-48 object-cover course-image">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <span class="px-3 py-1 bg-primary/10 text-primary dark:text-blue-400 text-xs font-medium rounded-full">Web Development</span>
+                            <span class="px-3 py-1 bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-300 text-xs font-medium rounded-full">Selesai</span>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2 dark:text-white">Fullstack Web Development Bootcamp</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">Kursus intensif untuk menjadi fullstack developer dengan MERN stack.</p>
+                        <div class="mb-4">
+                            <div class="flex justify-between mb-1">
+                                <span class="text-sm text-gray-600 dark:text-gray-400">Progress</span>
+                                <span class="text-sm font-medium text-primary dark:text-blue-400">100%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                                <div class="progress-bar h-2 rounded-full bg-primary" style="width: 100%"></div>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-gray-600 dark:text-gray-400">
+                                <i class="far fa-clock mr-1"></i> 80 jam
+                            </span>
+                            <a href="#" class="text-primary dark:text-blue-400 hover:text-secondary dark:hover:text-green-400 font-medium text-sm flex items-center">
+                                Lihat Sertifikat <i class="fas fa-arrow-right ml-2 text-xs"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Course 2 -->
+                <div class="course-card bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden card-hover">
+                    <div class="overflow-hidden">
+                        <img src="IMG/IoT.jpg" 
+                             alt="IoT Course" 
+                             class="w-full h-48 object-cover course-image">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <span class="px-3 py-1 bg-primary/10 text-primary dark:text-blue-400 text-xs font-medium rounded-full">IoT</span>
+                            <span class="px-3 py-1 bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-300 text-xs font-medium rounded-full">Selesai</span>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2 dark:text-white">IoT</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">Belajar prinsip desain, prototyping, dan tools modern untuk IoT.</p>
+                        <div class="mb-4">
+                            <div class="flex justify-between mb-1">
+                                <span class="text-sm text-gray-600 dark:text-gray-400">Progress</span>
+                                <span class="text-sm font-medium text-primary dark:text-blue-400">100%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                                <div class="progress-bar h-2 rounded-full bg-primary" style="width: 100%"></div>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-gray-600 dark:text-gray-400">
+                                <i class="far fa-clock mr-1"></i> 60 jam
+                            </span>
+                            <a href="#" class="text-primary dark:text-blue-400 hover:text-secondary dark:hover:text-green-400 font-medium text-sm flex items-center">
+                                Lihat Sertifikat <i class="fas fa-arrow-right ml-2 text-xs"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Course 3 -->
+                <div class="course-card bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden card-hover">
+                    <div class="overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1542831371-29b0f74f9713?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
+                             alt="Python Programming" 
+                             class="w-full h-48 object-cover course-image">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <span class="px-3 py-1 bg-primary/10 text-primary dark:text-blue-400 text-xs font-medium rounded-full">Programming</span>
+                            <span class="px-3 py-1 bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-300 text-xs font-medium rounded-full">Selesai</span>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2 dark:text-white">Python for Data Science</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">Belajar Python dari dasar hingga analisis data dengan library populer.</p>
+                        <div class="mb-4">
+                            <div class="flex justify-between mb-1">
+                                <span class="text-sm text-gray-600 dark:text-gray-400">Progress</span>
+                                <span class="text-sm font-medium text-primary dark:text-blue-400">100%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                                <div class="progress-bar h-2 rounded-full bg-primary" style="width: 100%"></div>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-gray-600 dark:text-gray-400">
+                                <i class="far fa-clock mr-1"></i> 45 jam
+                            </span>
+                            <a href="#" class="text-primary dark:text-blue-400 hover:text-secondary dark:hover:text-green-400 font-medium text-sm flex items-center">
+                                Lihat Sertifikat <i class="fas fa-arrow-right ml-2 text-xs"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Kursus dalam Progress -->
+        <div class="mb-16">
+            <h2 class="text-3xl font-bold mb-8 text-center dark:text-white">Sedang Dalam Proses</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Course in Progress 1 -->
+                <div class="course-card bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden card-hover">
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <span class="px-3 py-1 bg-primary/10 text-primary dark:text-blue-400 text-xs font-medium rounded-full">Cloud Computing</span>
+                            <span class="px-3 py-1 bg-yellow-100 dark:bg-yellow-900 text-yellow-800 dark:text-yellow-300 text-xs font-medium rounded-full">Dalam Progress</span>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2 dark:text-white">AWS Cloud</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">Memahami layanan cloud AWS dan mempersiapkan sertifikasi resmi.</p>
+                        <div class="mb-4">
+                            <div class="flex justify-between mb-1">
+                                <span class="text-sm text-gray-600 dark:text-gray-400">Progress</span>
+                                <span class="text-sm font-medium text-primary dark:text-blue-400">20%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                                <div class="progress-bar h-2 rounded-full bg-primary" style="width: 20%"></div>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-gray-600 dark:text-gray-400">
+                                <i class="far fa-clock mr-1"></i> 13/50 jam
+                            </span>
+                            <a href="#" class="text-primary dark:text-blue-400 hover:text-secondary dark:hover:text-green-400 font-medium text-sm flex items-center">
+                                Lanjutkan <i class="fas fa-arrow-right ml-2 text-xs"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Platform Belajar -->
+        <div class="mb-16">
+            <h2 class="text-3xl font-bold mb-8 text-center dark:text-white">Platform Belajar</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <div class="bg-white dark:bg-gray-800 rounded-xl p-6 text-center shadow-md card-hover">
+                    <div class="w-16 h-16 mx-auto mb-4 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center text-blue-600 dark:text-blue-400 text-2xl">
+                        <i class="fab fa-google"></i>
+                    </div>
+                    <span class="font-medium dark:text-gray-300">Google</span>
+                    <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">3 kursus</p>
+                </div>
+                <div class="bg-white dark:bg-gray-800 rounded-xl p-6 text-center shadow-md card-hover">
+                    <div class="w-16 h-16 mx-auto mb-4 bg-purple-100 dark:bg-purple-900 rounded-full flex items-center justify-center text-purple-600 dark:text-purple-400 text-2xl">
+                        <i class="fab fa-udemy"></i>
+                    </div>
+                    <span class="font-medium dark:text-gray-300">Udemy</span>
+                    <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">5 kursus</p>
+                </div>
+                <div class="bg-white dark:bg-gray-800 rounded-xl p-6 text-center shadow-md card-hover">
+                    <div class="w-16 h-16 mx-auto mb-4 bg-red-100 dark:bg-red-900 rounded-full flex items-center justify-center text-red-600 dark:text-red-400 text-2xl">
+                        <i class="fab fa-youtube"></i>
+                    </div>
+                    <span class="font-medium dark:text-gray-300">Youtube</span>
+                    <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">2 kursus</p>
+                </div>
+                <div class="bg-white dark:bg-gray-800 rounded-xl p-6 text-center shadow-md card-hover">
+                    <div class="w-16 h-16 mx-auto mb-4 bg-green-100 dark:bg-green-900 rounded-full flex items-center justify-center text-green-600 dark:text-green-400 text-2xl">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <span class="font-medium dark:text-gray-300">Sekolah</span>
+                    <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">2 kursus</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-dark dark:bg-gray-900 text-white py-8 transition-colors duration-300 mt-12">
+        <div class="container mx-auto px-4 text-center">
+            <p>&copy; 2023 Rizki Catur Maulana. All rights reserved.</p>
+            <div class="flex justify-center space-x-4 mt-4">
+                <a href="#" class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-primary transition">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="#" class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-primary transition">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="#" class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-primary transition">
+                    <i class="fab fa-tiktok"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Toggle dark mode functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const themeToggle = document.getElementById('theme-toggle');
+            const themeIcon = document.getElementById('theme-icon');
+            const htmlElement = document.documentElement;
+
+            // Check for saved theme preference or respect OS preference
+            if (localStorage.getItem('theme') === 'dark' || 
+                (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                htmlElement.classList.add('dark');
+                themeIcon.classList.remove('fa-moon');
+                themeIcon.classList.add('fa-sun');
+            } else {
+                htmlElement.classList.remove('dark');
+                themeIcon.classList.remove('fa-sun');
+                themeIcon.classList.add('fa-moon');
+            }
+
+            // Toggle theme on button click
+            themeToggle.addEventListener('click', () => {
+                if (htmlElement.classList.contains('dark')) {
+                    htmlElement.classList.remove('dark');
+                    localStorage.setItem('theme', 'light');
+                    themeIcon.classList.remove('fa-sun');
+                    themeIcon.classList.add('fa-moon');
+                } else {
+                    htmlElement.classList.add('dark');
+                    localStorage.setItem('theme', 'dark');
+                    themeIcon.classList.remove('fa-moon');
+                    themeIcon.classList.add('fa-sun');
+                }
+            });
+
+            // Animasi progress bar ketika masuk viewport
+            const progressBars = document.querySelectorAll('.progress-bar');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const width = entry.target.style.width;
+                        entry.target.style.width = '0';
+                        setTimeout(() => {
+                            entry.target.style.width = width;
+                        }, 100);
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.5 });
+            
+            progressBars.forEach(bar => {
+                observer.observe(bar);
+            });
+        });
+    </script>
+</body>
+</html>
